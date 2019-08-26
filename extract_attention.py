@@ -6,7 +6,7 @@ import numpy as np
 import tensorflow as tf
 
 from bert import modeling
-from bert import tokenization
+import tokenization_sentencepiece as tokenization
 import bpe_utils
 import utils
 
@@ -101,7 +101,8 @@ def main():
 
   print("Creating examples...")
   tokenizer = tokenization.FullTokenizer(
-      vocab_file=os.path.join(args.bert_dir, "vocab.txt"),
+      model_file=os.path.join(args.bert_dir, "wiki-ja.model"),
+      vocab_file=os.path.join(args.bert_dir, "wiki-ja.vocab"),
       do_lower_case=not args.cased)
   examples = []
   for features in utils.load_json(args.preprocessed_data_file):
@@ -111,8 +112,8 @@ def main():
 
   print("Building BERT model...")
   extractor = AttnMapExtractor(
-      os.path.join(args.bert_dir, "bert_config.json"),
-      os.path.join(args.bert_dir, "bert_model.ckpt"),
+      os.path.join(args.bert_dir, "config.json"),
+      os.path.join(args.bert_dir, "model.ckpt-1400000"),
       args.max_sequence_length, args.debug
   )
 
