@@ -35,6 +35,9 @@ RUN pip3 install -r /requirements.txt
 RUN mkdir /work
 WORKDIR /work
 
-EXPOSE 8888
+ARG JUPYTER_PORT
+ENV ENV_JUPYTER_PORT $JUPYTER_PORT
 
-CMD ["jupyter", "lab", "--port=8888", "--ip=0.0.0.0", "--allow-root", "--no-browser"]
+EXPOSE $ENV_JUPYTER_PORT
+
+CMD jupyter lab --port=${ENV_JUPYTER_PORT} --ip=0.0.0.0 --allow-root --no-browser

@@ -1,5 +1,15 @@
 #!/bin/sh
 
+JUPYTER_PORT=$1
+NAME=$(basename `pwd`)
+
+if [ -z "${JUPYTER_PORT}" ]; then
+  JUPYTER_PORT=8888
+fi
+
+echo "NAME         = ${NAME}"
+echo "JUPYTER_PORT = ${JUPYTER_PORT}"
+
 mkdir -p ./model/bert-wiki-ja
 
 if [ ! -e ./model/bert-wiki-ja/graph.pbtxt ]; then
@@ -28,6 +38,6 @@ if [ ! -e ./model/bert-wiki-ja/wiki-ja.vocab ]; then
   wget "https://drive.google.com/uc?export=download&id=1uzPpW38LcS4YS431GgdG0Hsj4gNgE5X1" -O ./model/bert-wiki-ja/wiki-ja.vocab
 fi
 
-docker build -t attention-analysis ./docker
-docker run --rm -it --name=attention-analysis -p 8888:8888 -v `pwd`:/work/attention-analysis attention-analysis
+docker build -t ${NAME} --build-arg JUPYTER_PORT=${JUPYTER_PORT} ./docker
+docker run --rm -it --name=${NAME} -p ${JUPYTER_PORT}:${JUPYTER_PORT} -v `pwd`:/work/${NAME} ${NAME}
 
