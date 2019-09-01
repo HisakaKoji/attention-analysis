@@ -17,6 +17,9 @@ RUN apt-get update \
   libmecab-dev \
   mecab-ipadic-utf8
 
+RUN apt-get install -y fonts-noto-cjk
+RUN apt-get install -y fonts-takao-pgothic fonts-takao-mincho
+
 RUN wget -q https://github.com/neologd/mecab-ipadic-neologd/archive/master.zip -O mecab-ipadic-neologd.zip \
   && unzip mecab-ipadic-neologd.zip \
   && rm mecab-ipadic-neologd.zip \
