@@ -15,6 +15,22 @@ Additional requirements for the attention analysis:
 * [seaborn](https://seaborn.pydata.org/index.html)
 * [scikit-learn](https://scikit-learn.org/)
 
+## Visualize Attention
+
+Start docker container for jupyter.
+
+```sh
+git clone https://github.com/manba036/attention-analysis.git
+cd attention-analysis
+./run_jupyter.sh
+```
+
+Open jupyter in the browser from <http://127.0.0.1:8888/?token=>*token displayed in terminal*.
+
+Try the following notebook to visualize attention.
+
+* [attention-analysis/visualize_attention.ipynb](https://github.com/manba036/attention-analysis/blob/master/visualize_attention.ipynb)
+
 ## Attention Analysis
 `Syntax_Analysis.ipynb` and `General_Analysis.ipynb`
 contain code for analyzing BERT's attention, including reproducing the figures and tables in the paper.
