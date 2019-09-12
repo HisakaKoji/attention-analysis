@@ -17,7 +17,7 @@ class Attns(object):
     def __get_elem(self, token, attn, max_attn):
         attn_int = int(attn * max_attn)
         return ('<span style="background-color:#ff0000{attn_int:02x};">' + \
-            '&nbsp;<b>{token}</b>&nbsp;' + \
+            '{token}' + \
             '</span>').format(**locals())
 
     def to_html(self, style='<style>th, td { text-align: left!important; white-space: nowrap!important; }</style>', label_format='Head{head_index}', max_attn=240):
