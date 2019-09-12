@@ -16,7 +16,9 @@ class Attns(object):
 
     def __get_elem(self, token, attn, max_attn):
         attn_int = int(attn * max_attn)
+        print(token)
         token = token.replace(' ','')
+        print(token)
         return ('<span style="background-color:#ff0000{attn_int:02x};">' + \
             '{token}' + \
             '</span>').format(**locals())
